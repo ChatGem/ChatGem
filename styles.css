@@ -1,0 +1,10 @@
+.search-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #7B1FA2;
+    padding: 5px; /* Adjust the padding */
+    width: 150px; /* Adjust the width */
+    height: 30px; /* Adjust the height */
+    box-sizing: border-box;
+}
