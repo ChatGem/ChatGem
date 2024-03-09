@@ -58,17 +58,29 @@
         }
 
         /* Additional style to position the search box at the bottom */
-      
+
     </style>
 </head>
 <body>
+  <button onclick="window.location.href='mathgenie.html'">Switch Genie</button>
     <div id="header">
         <h1>ChatGenie</h1>
     </div>
     <div id="chat-log"></div>
     <input type="text" id="user-input" placeholder="Type your message here">
     <button id="clear-button">Reset Chat</button>
-    <button id="credits-button">Credits</button>
+  <button onclick="redirectToPage()">ChatCredits</button>
+
+  <script>
+  function redirectToPage() {
+    window.location.href = "ChatCredits.html"; // Replace "your_specific_file.html" with the file you want to navigate to
+  }
+  </script>
+
+  </body>
+  </html>
+
+
     <canvas id="pingPongCanvas" width="800" height="400" style="border: 1px solid black;"></canvas> 
     <!-- Clock div -->
     <div id="clock"></div>
@@ -76,15 +88,14 @@
     <!-- Search box container at the bottom -->
     <div class="search-container">
         <!-- Embed Google Custom Search Engine -->
-        <script async src="https://cse.google.com/cse.js?cx=90e48170000d24f56"></script>
-        <div class="gcse-search"></div>
+      
+        <div class="ccsearch"></div>
     </div>
-
     <script>
         const chatLog = document.getElementById('chat-log');
         const userInput = document.getElementById('user-input');
         const clearButton = document.getElementById('clear-button');
-        const creditsButton = document.getElementById('credits-button');
+       
         const canvas = document.getElementById("pingPongCanvas");
         const context = canvas.getContext("2d");
         const paddleWidth = 20;
@@ -120,30 +131,37 @@
         updateClock();
 
         // Add event listener to the clock for displaying time-specific messages
-        document.getElementById('clock').addEventListener('click', function() {
-            var now = new Date();
-            var hours = now.getHours();
+      document.getElementById('clock').addEventListener('click', function() {
+          var now = new Date();
+          var hours = now.getHours();
+          var minutes = now.getMinutes();
+          var ampm = hours >= 12 ? 'PM' : 'AM';
 
-            var message;
+          var message;
 
-            if ((hours >= 0 && hours < 3) || (hours >= 12 && hours < 15)) {
-                message = "Why are you awake?";
-            } else if (hours >= 3 && hours < 5) {
-                message = "Don't wake up at 3 am";
-            } else if (hours >= 5 && hours < 7) {
-                message = "Ok, you can wake up now";
-            } else if (hours >= 7 && hours < 12) {
-                message = "Good morning, how are ya?";
-            } else if (hours >= 15 && hours < 18) {
-                message = "Go have some fun";
-            } else if (hours >= 18 && hours < 21) {
-                message = "Welp, time for bed";
-            } else {
-                message = "Seriously, go to bed";
-            }
+          if ((hours >= 0 && hours < 3) || (hours >= 12 && hours < 15)) {
+              message = "Why are you awake?";
+          } else if (hours >= 3 && hours < 5) {
+              message = "Don't wake up at 3 am";
+          } else if (hours >= 5 && hours < 7) {
+              message = "Ok, you can wake up now";
+          } else if (hours >= 7 && hours < 12) {
+              message = "Good morning, how are ya?";
+          } else if (hours >= 15 && hours < 18) {
+              message = "Go have some fun";
+          } else if (hours >= 18 && hours < 21) {
+              message = "Welp, time for bed";
+          } else {
+              message = "Seriously, go to bed";
+          }
 
-            alert("Current time: " + document.getElementById('clock').textContent + "\n" + message);
-        });
+          alert("Current time: " + hours + ":" + (minutes < 10 ? "0" + minutes : minutes) + " " + ampm + "\n" + message);
+      });
+
+
+      creditsButton.addEventListener('click', function() {
+          // Your code for creditsButton click event
+      });
 
         creditsButton.addEventListener('click', function() {
             sendMessage("credits");
@@ -175,8 +193,7 @@
                 displayMessage("ChatGenie: Whopper Whopper Whopper Whopper Junior, Double, Triple Whopper. Flame grilled taste with perfect toppers I rule this day. Lettuce, mayo, pickle, ketchup, it\'s okay if I don\'t want that. Impossible or Bacon Whopper any Whopper my way You rule you\'re seizin the day at BK have it your way. You rule!"); }
             else if (sanitizedMessage.includes('hello') || sanitizedMessage.includes('hi') || sanitizedMessage.includes('hey')) {
                 displayMessage('ChatGenie: Hello, I\'m ChatGenie!');
-            } else if (sanitizedMessage.includes('credits')) {
-                displayMessage("Lead Dev and Owner: Zak Spocter. Devs: Anders Thoreson, Xander Buckner, Eden Romp.");
+            } else if 
             } else if (sanitizedMessage.includes('type your message here')) {
                 displayMessage('ChatGenie: Using placeholder text, are we?');
             } else if (sanitizedMessage.includes('you are')) {
