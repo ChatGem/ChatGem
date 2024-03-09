@@ -1,3 +1,2 @@
 # ChatGenie
-If your wondering ChatGenie is a new chatbot that me and some friends are working on (check the credits button in the actual ChatGenie program to see their names)
-  there are many commands that we have made so far theres a full list on my replit page right here https://replit.com/@zspocter15/ChatGenie?v=1#index.html
+If your wondering ChatGenie is a new chatbot that me and some friends are working on there are many commands that we have made so far theres a  list on my replit page right here https://replit.com/@zspocter15/ChatGenie?v=1#index.html but I will go over them quickly (ping-pong, hi, hey, hello,you are so adjective, and whopper. We also have other features such as credits resetting the chat and math genie. Thanks for taking the time to check out our project heres a reward, go to math genie and then on your keyboard click these buttons. Up arrow Up arrow Down arrow Down arrow its a easter egg that we made for you:-)
