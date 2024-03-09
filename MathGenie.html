@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MathGenie</title>
+    <style>
+        body {
+            background-color:#7B1FA2 ;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+        .calculator {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 10px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+        }
+        input[type="button"] {
+            width: 48%;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #555;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="button"]:hover {
+            background-color: #444;
+        }
+        #flashingText {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            color: black;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<button onclick="window.location.href='index.html'">Switch Genie</button>
+<div class="calculator" id="calculator">
+    <h1>Math Genie</h1>
+    <input type="text" id="equation" placeholder="Enter equation">
+
+    <!-- Add other number buttons (1-9) here -->
+    <input type="button" value="+" onclick="appendToEquation('+')">
+    <input type="button" value="-" onclick="appendToEquation('-')">
+    <input type="button" value="*" onclick="appendToEquation('*')">
+    <input type="button" value="/" onclick="appendToEquation('/')">
+    <input type="button" value="." onclick="appendToEquation('.')">
+    <input type="button" value="=" onclick="calculate()">
+
+    <input type="button" value="Numerals" onclick="switchToNumerals()">
+    <input type="text" id="result" readonly>
+</div>
+
+<div id="flashingText">Thanks for taking the time to see our project  ^_^</div>
+
+<script>
+    let useFractions = false;
+
+    function appendToEquation(value) {
+        document.getElementById('equation').value += value;
+    }
+
+    function calculate() {
+        try {
+            const equation = document.getElementById('equation').value;
+            let result = useFractions ? evalFraction(equation) : eval(equation);
+            document.getElementById('result').value = result;
+        } catch (error) {
+            document.getElementById('result').value = 'Error';
+        }
+    }
+
+    function switchToFractions() {
+        useFractions = true;
+    }
+
+    function switchToNumerals() {
+        useFractions = false;
+    }
+
+    // Function to evaluate fractions
+    function evalFraction(equation) {
+        // Parse the equation into operands and operator
+        const [operand1, operator, operand2] = equation.split(/[+\-*\/]/);
+        const [num1, denom1] = operand1.split('/');
+        const [num2, denom2] = operand2.split('/');
+
+        // Convert operands to fractions
+        const fraction1 = parseInt(num1) / parseInt(denom1);
+        const fraction2 = parseInt(num2) / parseInt(denom2);
+        // Perform the operation
+        let result;
+        switch (operator) {
+            case '+':
+                result = fraction1 + fraction2;
+                break;
+            case '-':
+                result = fraction1 - fraction2;
+                break;
+            case '*':
+                result = fraction1 * fraction2;
+                break;
+            case '/':
+                result = fraction1 / fraction2;
+                break;
+            default:
+                throw new Error('Invalid operator');
+        }
+
+        return result;
+    }
+
+    var arrowSequence = []; // Initialize the sequence array
+    var flashCount = 0;
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+            arrowSequence.push(event.key);
+            if (arrowSequence.length > 4) {
+                arrowSequence.shift(); // Remove the oldest key if the sequence length exceeds 4
+            }
+            if (arrowSequence.join('') === 'ArrowUpArrowUpArrowDownArrowDown') {
+                displaySecretCode();
+                arrowSequence = []; // Reset the sequence after displaying the code
+            }
+        } else {
+            arrowSequence = []; // Reset the sequence if a key other than ArrowUp or ArrowDown is pressed
+        }
+    });
+
+    function displaySecretCode() {
+        alert("You've entered the secret code: now you get cools!");
+
+        // Hide the calculator
+        document.getElementById('calculator').style.display = 'none';
+
+        // Create a function to toggle the flashing effect
+        function toggleFlash() {
+            var count = 0;
+            var flashInterval = setInterval(function() {
+                switch (count % 5) {
+                    case 0:
+                        document.body.style.backgroundColor = "red";
+                        break;
+                    case 1:
+                        document.body.style.backgroundColor = "orange";
+                        break;
+                    case 2:
+                        document.body.style.backgroundColor = "yellow";
+                        break;
+                    case 3:
+                        document.body.style.backgroundColor = "green";
+                        break;
+                    case 4:
+                        document.body.style.backgroundColor = "blue";
+                        break;
+                }
+                count++;
+                if (count >= 50) { // 10 flashes (50 toggles)
+                    clearInterval(flashInterval); // Stop flashing
+                    document.body.style.backgroundColor = "#7B1FA2"; // Reset background color to original purple
+                    document.getElementById('flashingText').style.display = 'none'; // Hide flashing text
+                    document.getElementById('calculator').style.display = 'block'; // Show the calculator
+                } else {
+                    document.getElementById('flashingText').style.display = 'block'; // Show flashing text
+                }
+            }, 200); // Change this value to adjust the speed of the flash (in milliseconds)
+        }
+
+        // Trigger the flashing effect
+        toggleFlash();
+    }
+</script>
+</body>
+</html>
