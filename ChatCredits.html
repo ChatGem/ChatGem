@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chat Genie Credits</title>
+<style>
+  body {
+    background-color: #7B1FA2;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    text-align: center;
+    margin-top: 50px;
+  }
+  .btn {
+    background-color: #ffffff;
+    color: #7B1FA2;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 45px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  .credits-text {
+    font-size: 36px;
+    color: #black;
+  }
+  .credits-page {
+    display: none;
+  }
+  .devs-container {
+    text-align: left;
+    margin-top: 50px;
+  }
+  .textbox {
+    width: 400px;
+    height: 30px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    border: 1px solid #7B1FA2;
+    border-radius: 4px;
+    padding: 5px;
+  }
+  .special-text {
+    font-size: 45px;
+    color: #black;
+    margin-top: 20px;
+  }
+  .back-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="buttons">
+    <button class="btn" onclick="showPage('developers')">Developers</button>
+    <button class="btn" onclick="showPage('why')">Why</button>
+  </div>
+  <div class="credits-text">
+    Chat Genie Credits
+  </div>
+</div>
+
+<div id="developers" class="credits-page">
+  <button class="back-btn btn" onclick="goBack()">Back to Genie</button>
+  <div class="devs-container">
+    <input type="text" class="textbox" value="Owner: Zak" readonly><br>
+    <input type="text" class="textbox" value="Main dev: Xander Buckner" readonly><br>
+    <input type="text" class="textbox" value="Devs: Eden, and Anders Thoreson" readonly><br>
+    <p class="special-text">We value our dev team and each one has done something important to help the growth of Chat Genie and Math Genie.</p>
+  </div>
+</div>
+
+<div id="why" class="credits-page">
+  <button class="back-btn btn" onclick="goBack()">Back to Genie</button>
+  <div class="why-container">
+    <p>Our goal for Chat Genie and Math Genie was just to make a little chatbot but we never knew that we would work so frequently to make it this big.</p>
+  </div>
+</div>
+
+<script>
+function showPage(pageId) {
+  var pages = document.getElementsByClassName("credits-page");
+  for (var i = 0; i < pages.length; i++) {
+    pages[i].style.display = "none";
+  }
+  document.getElementById(pageId).style.display = "block";
+}
+
+function goBack() {
+  window.location.href = "index.html"; // 
+</script>
+
+</body>
+</html>
