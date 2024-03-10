@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Fetcher</title>
+    <style>
+        /* Add your custom CSS styles here */
+        #middleImage {
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body style="background-color:#7B1FA2;">
+    <h1>Weather Fetcher</h1>
+    <div>
+        <label for="city">Enter City:</label>
+        <input type="text" id="city" placeholder="Enter city name">
+        <button onclick="fetchWeather()">Get Weather</button>
+    </div>
+    <div id="weatherResult">
+        <!-- Weather data will be displayed here -->
+    </div>
+
+    <!-- Image added here -->
+    <script>
+        function fetchWeather() {
+            const apiKey = '681f558146ec408aa24203103241302'; // Replace 'YOUR_API_KEY' with your actual WeatherAPI.com API key
+            const city = document.getElementById('city').value;
+            const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
+
+            fetch(apiUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    displayWeather(data);
+                })
+                .catch(error => {
+                    console.error('There was a problem with your fetch operation:', error);
+                });
+        }
+
+        function displayWeather(data) {
+            const weatherResult = document.getElementById('weatherResult');
+            const weather = data.current;
+            const cityName = data.location.name;
+            const countryName = data.location.country;
+            const temperatureCelsius = weather.temp_c;
+            const temperatureFahrenheit = weather.temp_f;
+            const condition = weather.condition.text;
+
+            weatherResult.innerHTML = `
+                <h2>${cityName}, ${countryName}</h2>
+                <p>Temperature: ${temperatureFahrenheit}°F (${temperatureCelsius}°C)</p>
+                <p>Condition: ${condition}</p>
+            `;
+        }
+    </script>
+</body>
+</html>
