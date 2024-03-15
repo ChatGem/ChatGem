@@ -70,6 +70,7 @@
 <div id="flashingText">Thanks for taking the time to see our project  ^_^</div>
 
 <script>
+
     let useFractions = false;
 
     function appendToEquation(value) {
@@ -130,7 +131,13 @@
     var flashCount = 0;
 
     document.addEventListener('keydown', function(event) {
-        if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+        if (event.key === 'Enter') {
+            const equationValue = document.getElementById('equation').value.toLowerCase();
+            if (equationValue === 'game') {
+                window.location.href = 'game.html';
+            }
+        }
+        else if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
             arrowSequence.push(event.key);
             if (arrowSequence.length > 4) {
                 arrowSequence.shift(); // Remove the oldest key if the sequence length exceeds 4
