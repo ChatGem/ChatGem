@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MathGenie</title>
+    <title>MathGem</title>
     <style>
         body {
             background-color:#7B1FA2 ;
@@ -50,9 +50,9 @@
     </style>
 </head>
 <body>
-<button onclick="window.location.href='index.html'">Switch Genie</button>
+<button onclick="window.location.href='ChatGem.html'">Switch G</button>
 <div class="calculator" id="calculator">
-    <h1>Math Genie</h1>
+    <h1>Math Gem</h1>
     <input type="text" id="equation" placeholder="Enter equation">
 
     <!-- Add other number buttons (1-9) here -->
@@ -134,7 +134,7 @@
         if (event.key === 'Enter') {
             const equationValue = document.getElementById('equation').value.toLowerCase();
             if (equationValue === 'game') {
-                window.location.href = 'game.html';
+                window.location.href = 'gameGem.html';
             }
         }
         else if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
